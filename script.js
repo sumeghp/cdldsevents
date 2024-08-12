@@ -1,49 +1,43 @@
 // Event data
 const events = [
-{
-  "id": 1,
-  "title": "AI/ML Methods in Weather Modelling",
-  "type": "workshop",
-  "date": "2024-09-06",
-  "endDate": "2024-09-07",
-  "description": "A two-day workshop featuring a tutorial on monsoon weather modelling and research talks by eminent speakers.",
-  "speakers": [
-    "Shreya Agrawal",
-    "Auroop R Ganguly",
-    "Amar Jyothi K",
-    "Jayanarayanan Kuttippurath",
-    "Krishnan Raghavan",
-    "Mrutyunjay Mohapatra",
-    "Madhavan Nair Rajeevan",
-    "Tapio Schneider",
-    "Sandeep Sukumaran"
-  ],
-  "speakerDetails": [
-    "Shreya Agrawal - Google Research, San Francisco",
-    "Auroop R Ganguly - COE Distinguished Professor, Northeastern University, Indian Institute of Technology Kharagpur",
-    "Amar Jyothi K - Scientist, National Centre for Medium Range Weather Forecasting",
-    "Jayanarayanan Kuttippurath - Director, Indian Institute of Meteorology (Keynote Speaker)",
-    "Krishnan Raghavan - Indian Institute of Technology Delhi",
-    "Mrutyunjay Mohapatra - Director General of Meteorology, IMD (Chief Guest)",
-    "Madhavan Nair Rajeevan - Vice Chancellor, Atria University, Former Secretary, MoES India (Tutorial Speaker)",
-    "Tapio Schneider - (Keynote Speaker)",
-    "Sandeep Sukumaran - Theodore Y. Wu Professor of Environmental Science and Engineering, California Institute of Technology"
-  ],
-  "location": "AC03, LR005, Ground Floor, Ashoka University, Sonipat",
-  "highlights": [
-    "A two and a half hour tutorial on monsoon weather modelling on September 6, 2024",
-    "Research talks by eminent speakers on September 7, 2024"
-  ],
-  "registration": {
-    "deadline": "2024-08-30",
-    "link": "https://www.ashoka.edu.in/event/ai-ml-methods-in-weather-modelling/"
-  },
-  "contact": {
-    "email": "ashoka-cdlds@ashoka.edu.in",
-    "phone": "+91-9136857558",
-    "website": "https://cdlds.ashoka.edu.in/"
-  }
-};
+    {
+        id: 1,
+        title: "AI/ML Methods in Weather Modelling",
+        type: "workshop",
+        date: "2024-09-06",
+        endDate: "2024-09-07",
+        description: "A two-day workshop featuring a tutorial on monsoon weather modelling and research talks by eminent speakers.",
+        speakers: [
+            "Auroop R Ganguly", "Jayanarayanan Kuttippurath", "Krishnan Raghavan",
+            "Sandeep Sukumaran", "Tapio Schneider", "Mrutyunjay Mohapatra",
+            "Madhavan Nair Rajeevan", "Amar Jyothi K", "Shreya Agrawal"
+        ],
+        speakerDetails: [
+            "Shreya Agrawal - Google Research, San Francisco"
+            "Auroop R Ganguly - COE Distinguished Professor, Northeastern University, Indian Institute of Technology Kharagpur",
+            "Amar Jyothi K - Scientist, National Centre for Medium Range Weather Forecasting",
+            "Jayanarayanan Kuttippurath - Director, Indian Institute of Meteorology (Keynote Speaker)",
+            "Krishnan Raghavan - Indian Institute of Technology Delhi",
+            "Mrutyunjay Mohapatra - Director General of Meteorology, IMD (Chief Guest)",
+            "Madhavan Nair Rajeevan - Vice Chancellor, Atria University, Former Secretary, MoES India (Tutorial Speaker)",
+            "Tapio Schneider - (Keynote Speaker)",
+            "Sandeep Sukumaran - Theodore Y. Wu Professor of Environmental Science and Engineering, California Institute of Technology",
+        ],
+        location: "AC03, LR005, Ground Floor, Ashoka University, Sonipat",
+        highlights: [
+            "A two and a half hour tutorial on monsoon weather modelling on September 6, 2024",
+            "Research talks by eminent speakers on September 7, 2024"
+        ],
+        registration: {
+            deadline: "2024-08-30",
+            link: "Scan QR code or click provided link"
+        },
+        contact: {
+            email: "ashoka-cdlds@ashoka.edu.in",
+            phone: "+91-9136857558",
+            website: "https://cdlds.ashoka.edu.in/"
+        }
+    },
     {
         id: 2,
         title: "Is Physical Climate Risk Priced?",
