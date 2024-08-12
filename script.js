@@ -13,15 +13,15 @@ const events = [
             "Madhavan Nair Rajeevan", "Amar Jyothi K", "Shreya Agrawal"
         ],
         speakerDetails: [
+            "Shreya Agrawal - Google Research, San Francisco"
             "Auroop R Ganguly - COE Distinguished Professor, Northeastern University, Indian Institute of Technology Kharagpur",
+            "Amar Jyothi K - Scientist, National Centre for Medium Range Weather Forecasting",
             "Jayanarayanan Kuttippurath - Director, Indian Institute of Meteorology (Keynote Speaker)",
             "Krishnan Raghavan - Indian Institute of Technology Delhi",
-            "Sandeep Sukumaran - Theodore Y. Wu Professor of Environmental Science and Engineering, California Institute of Technology",
-            "Tapio Schneider - (Keynote Speaker)",
             "Mrutyunjay Mohapatra - Director General of Meteorology, IMD (Chief Guest)",
             "Madhavan Nair Rajeevan - Vice Chancellor, Atria University, Former Secretary, MoES India (Tutorial Speaker)",
-            "Amar Jyothi K - Scientist, National Centre for Medium Range Weather Forecasting",
-            "Shreya Agrawal - Google Research, San Francisco"
+            "Tapio Schneider - (Keynote Speaker)",
+            "Sandeep Sukumaran - Theodore Y. Wu Professor of Environmental Science and Engineering, California Institute of Technology",
         ],
         location: "AC03, LR005, Ground Floor, Ashoka University, Sonipat",
         highlights: [
@@ -50,7 +50,7 @@ const events = [
             "C.V. Starr Professor of Economics, NYU Stern School of Business",
             "Former Deputy Governor, Reserve Bank of India"
         ],
-        joinLink: "www.google.co.in/dummy-url",
+        joinLink: "https://zoom.us/j/96515965150?pwd=s1dnImaN6Yr6n8Wnx85bJHK3lgzeMw.1",
         contact: {
             email: "ashoka-cdlds@ashoka.edu.in",
             phone: "+91-9136857558",
