@@ -8,9 +8,8 @@ const events = [
         endDate: "2024-09-07",
         description: "A two-day workshop featuring a tutorial on monsoon weather modelling and research talks by eminent speakers.",
         speakers: [
-            "Auroop R Ganguly", "Jayanarayanan Kuttippurath", "Krishnan Raghavan",
-            "Sandeep Sukumaran", "Tapio Schneider", "Mrutyunjay Mohapatra",
-            "Madhavan Nair Rajeevan", "Amar Jyothi K", "Shreya Agrawal"
+            "Shreya Agrawal", "Auroop R Ganguly", "Amar Jyothi K", "Jayanarayanan Kuttippurath", "Krishnan Raghavan",
+            "Mrutyunjay Mohapatra", "Madhavan Nair Rajeevan", "Tapio Schneider", "Sandeep Sukumaran", 
         ],
         speakerDetails: [
             "Shreya Agrawal - Google Research, San Francisco"
