@@ -1,4 +1,4 @@
-// Sample event data
+// Event data based on the provided PDFs
 const events = [
     {
         id: 1,
@@ -12,10 +12,30 @@ const events = [
             "Sandeep Sukumaran", "Tapio Schneider", "Mrutyunjay Mohapatra",
             "Madhavan Nair Rajeevan", "Amar Jyothi K", "Shreya Agrawal"
         ],
+        speakerDetails: [
+            "Auroop R Ganguly - COE Distinguished Professor, Northeastern University, Indian Institute of Technology Kharagpur",
+            "Jayanarayanan Kuttippurath - Director, Indian Institute of Meteorology (Keynote Speaker)",
+            "Krishnan Raghavan - Indian Institute of Technology Delhi",
+            "Sandeep Sukumaran - Theodore Y. Wu Professor of Environmental Science and Engineering, California Institute of Technology",
+            "Tapio Schneider - (Keynote Speaker)",
+            "Mrutyunjay Mohapatra - Director General of Meteorology, IMD (Chief Guest)",
+            "Madhavan Nair Rajeevan - Vice Chancellor, Atria University, Former Secretary, MoES India (Tutorial Speaker)",
+            "Amar Jyothi K - Scientist, National Centre for Medium Range Weather Forecasting",
+            "Shreya Agrawal - Google Research, San Francisco"
+        ],
         location: "AC03, LR005, Ground Floor, Ashoka University, Sonipat",
+        highlights: [
+            "A two and a half hour tutorial on monsoon weather modelling on September 6, 2024",
+            "Research talks by eminent speakers on September 7, 2024"
+        ],
         registration: {
             deadline: "2024-08-30",
             link: "Scan QR code or click provided link"
+        },
+        contact: {
+            email: "ashoka-cdlds@ashoka.edu.in",
+            phone: "+91-9136857558",
+            website: "https://cdlds.ashoka.edu.in/"
         }
     },
     {
@@ -30,7 +50,12 @@ const events = [
             "C.V. Starr Professor of Economics, NYU Stern School of Business",
             "Former Deputy Governor, Reserve Bank of India"
         ],
-        joinLink: "www.google.co.in/dummy-url"
+        joinLink: "www.google.co.in/dummy-url",
+        contact: {
+            email: "ashoka-cdlds@ashoka.edu.in",
+            phone: "+91-9136857558",
+            website: "https://cdlds.ashoka.edu.in/"
+        }
     },
     {
         id: 3,
@@ -85,61 +110,37 @@ function showEventDetails(event) {
     modalContent.innerHTML = `
         <h4>Date: ${formatDate(eventDetails.date)}${eventDetails.endDate ? ' - ' + formatDate(eventDetails.endDate) : ''}</h4>
         <p>${eventDetails.description}</p>
-        <h5>Speakers:</h5>
-        <ul>
-            ${eventDetails.speakers ? eventDetails.speakers.map(speaker => `<li>${speaker}</li>`).join('') : '<li>To be announced</li>'}
-        </ul>
-        ${eventDetails.location ? `<p><strong>Location:</strong> ${eventDetails.location}</p>` : ''}
         ${eventDetails.time ? `<p><strong>Time:</strong> ${eventDetails.time}</p>` : ''}
+        ${eventDetails.location ? `<p><strong>Location:</strong> ${eventDetails.location}</p>` : ''}
+        ${eventDetails.speakers ? `
+            <h5>Speakers:</h5>
+            <ul>
+                ${eventDetails.speakerDetails ? eventDetails.speakerDetails.map(speaker => `<li>${speaker}</li>`).join('') : 
+                  eventDetails.speakers.map(speaker => `<li>${speaker}</li>`).join('')}
+            </ul>
+        ` : ''}
+        ${eventDetails.highlights ? `
+            <h5>Highlights:</h5>
+            <ul>
+                ${eventDetails.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+            </ul>
+        ` : ''}
+        ${eventDetails.registration ? `
+            <h5>Registration:</h5>
+            <p>Deadline: ${eventDetails.registration.deadline}</p>
+            <p>${eventDetails.registration.link}</p>
+        ` : ''}
+        ${eventDetails.contact ? `
+            <h5>Contact:</h5>
+            <p>Email: ${eventDetails.contact.email}</p>
+            <p>Phone: ${eventDetails.contact.phone}</p>
+            <p>Website: <a href="${eventDetails.contact.website}" target="_blank">${eventDetails.contact.website}</a></p>
+        ` : ''}
+        ${eventDetails.joinLink ? `<p><strong>Join Link:</strong> <a href="${eventDetails.joinLink}" target="_blank">${eventDetails.joinLink}</a></p>` : ''}
     `;
     
     const modal = new bootstrap.Modal(document.getElementById('eventDetailsModal'));
     modal.show();
-}
-
-function renderTimeline() {
-    const margin = {top: 20, right: 20, bottom: 30, left: 50};
-    const width = document.getElementById('timeline-chart').clientWidth - margin.left - margin.right;
-    const height = 150 - margin.top - margin.bottom;
-
-    const svg = d3.select("#timeline-chart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    const x = d3.scaleTime()
-        .range([0, width]);
-
-    const y = d3.scaleLinear()
-        .range([height, 0]);
-
-    const line = d3.line()
-        .x(d => x(new Date(d.date)))
-        .y(d => y(d.id));
-
-    x.domain(d3.extent(events, d => new Date(d.date)));
-    y.domain([0, events.length]);
-
-    svg.append("path")
-        .datum(events)
-        .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 2)
-        .attr("d", line);
-
-    svg.selectAll(".dot")
-        .data(events)
-        .enter().append("circle")
-        .attr("class", "dot")
-        .attr("cx", d => x(new Date(d.date)))
-        .attr("cy", d => y(d.id))
-        .attr("r", 5)
-        .attr("fill", "steelblue");
-
-    svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x));
 }
 
 function createMathBackground() {
@@ -164,7 +165,6 @@ function createMathBackground() {
 
 document.addEventListener('DOMContentLoaded', function() {
     renderEvents(events);
-    renderTimeline();
     createMathBackground();
 
     $('#date-range').daterangepicker({
