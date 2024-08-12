@@ -1,5 +1,8 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Raleway', Arial, sans-serif;
     background-color: #f0f0f0;
     position: relative;
     min-height: 100vh;
@@ -34,6 +37,12 @@ header {
 
 .logo {
     max-width: 400px;
+}
+
+/* Updated styles for home and contact buttons */
+header a {
+    color: #000 !important;
+    font-weight: 500;
 }
 
 main {
@@ -108,5 +117,6 @@ footer {
 
 /* New style for footer links */
 footer a {
-    color: #000 !important;
+    color: #fff !important;
 }
+</style>
