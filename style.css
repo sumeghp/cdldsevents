@@ -1,4 +1,3 @@
-<style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
 
 body {
@@ -12,25 +11,25 @@ body {
     padding: 0;
 }
 
-/* Mathematical background */
-body::after {
-    content: "";
+body::before {
+    content: "∇ ÷ × π ∑ θ ∂ σ + λ ∫";
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: -1;
-    background: 
-        linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+    color: rgba(0, 0, 0, 0.03);
+    font-size: 24px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: rotate(-45deg);
     pointer-events: none;
 }
 
-/* Light grey header */
 header {
-    background-color: #d3d3d3 !important;
+    background-color: #d3d3d3;
     padding: 20px 0;
     width: 100%;
 }
@@ -39,10 +38,11 @@ header {
     max-width: 400px;
 }
 
-/* Updated styles for home and contact buttons */
 header a {
-    color: #000 !important;
+    color: #000;
     font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
 }
 
 main {
@@ -52,10 +52,9 @@ main {
     z-index: 1;
 }
 
-/* Black footer with white text */
 footer {
-    background-color: #000 !important;
-    color: #fff !important;
+    background-color: #000;
+    color: #fff;
     padding: 20px 0;
     width: 100%;
 }
@@ -64,6 +63,10 @@ footer {
     height: 100%;
     transition: transform 0.3s ease-in-out;
     background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .event-card:hover {
@@ -73,6 +76,7 @@ footer {
 .event-image {
     height: 200px;
     object-fit: cover;
+    width: 100%;
 }
 
 .btn-details {
@@ -95,7 +99,6 @@ footer {
     opacity: 1;
 }
 
-/* Styles for dropdown menu and date range field */
 .dropdown-menu {
     background-color: #f0f0f0;
 }
@@ -109,14 +112,61 @@ footer {
     margin-right: 10px;
 }
 
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-control, .form-select {
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
 @media (max-width: 768px) {
     .logo {
         max-width: 200px;
     }
+    
+    header a {
+        margin-left: 10px;
+    }
+    
+    .event-card {
+        margin-bottom: 20px;
+    }
 }
 
-/* New style for footer links */
 footer a {
-    color: #fff !important;
+    color: #fff;
 }
-</style>
