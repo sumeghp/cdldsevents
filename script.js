@@ -1,4 +1,3 @@
-// Define the events
 let events = [
     {
         title: "AI/ML Methods in Weather Modelling",
@@ -24,159 +23,23 @@ let events = [
         ]
     },
     {
-        title: "Ashoka Astronomy Club",
-        type: "club",
-        startDate: "August 15, 2024",
-        endDate: "December 15, 2024",
-        location: "Ashoka University Campus",
-        description: "Join us for an exciting semester of astronomical exploration and discovery!",
+        title: "Is Physical Climate Risk Priced?",
+        type: "online talk",
+        startDate: "September 03, 2024",
+        endDate: "September 03, 2024",
+        time: "06:00 PM IST",
+        location: "Online",
+        description: "Inaugural online talk of the seminar series organized by the Centre for Data, Learning and Decision Sciences at Ashoka University.",
+        speakers: [
+            { name: "Viral Acharya", affiliation: "C.V. Starr Professor of Economics, NYU Stern School of Business", note: "Former Deputy Governor, Reserve Bank of India" }
+        ],
         highlights: [
-            "Weekly stargazing sessions",
-            "Guest lectures by renowned astronomers",
-            "Hands-on workshops on telescope use and astrophotography",
-            "Field trips to observatories"
-        ]
+            "Inaugural online talk of the seminar series",
+            "Discussion on physical climate risk pricing"
+        ],
+        organizer: "Centre for Data, Learning and Decision Sciences, Ashoka University",
+        contactEmail: "ashoka-cdlds@ashoka.edu.in",
+        contactPhone: "+91-9136857558",
+        website: "https://cdlds.ashoka.edu.in/"
     }
 ];
-
-// Function to display events
-function displayEvents() {
-    console.log("Displaying events");
-    console.log("Events:", events);
-    const upcomingEvents = document.getElementById('upcoming-events');
-    const pastEvents = document.getElementById('past-events');
-    const currentDate = new Date();
-
-    upcomingEvents.innerHTML = '';
-    pastEvents.innerHTML = '';
-
-    events.forEach(event => {
-        const eventDate = new Date(event.startDate);
-        const eventElement = createEventElement(event);
-
-        if (eventDate >= currentDate) {
-            upcomingEvents.appendChild(eventElement);
-        } else {
-            pastEvents.appendChild(eventElement);
-        }
-    });
-}
-
-// Function to create event element
-function createEventElement(event) {
-    console.log("Creating event element for:", event.title);
-    const eventDiv = document.createElement('div');
-    eventDiv.className = 'col-md-4 mb-4';
-    eventDiv.innerHTML = `
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">${event.title}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${event.type}</h6>
-                <p class="card-text">${event.startDate} - ${event.endDate}</p>
-                <p class="card-text">${event.description}</p>
-                <button class="btn btn-primary" onclick="showEventDetails('${event.title}')">More Details</button>
-            </div>
-        </div>
-    `;
-    return eventDiv;
-}
-
-// Function to show event details
-function showEventDetails(eventTitle) {
-    const event = events.find(e => e.title === eventTitle);
-    const modal = new bootstrap.Modal(document.getElementById('eventDetailsModal'));
-    
-    document.getElementById('eventDetailsModalLabel').textContent = event.title;
-    
-    let speakersList = event.speakers ? event.speakers.map(speaker => 
-        `<li>${speaker.name} - ${speaker.affiliation}${speaker.note ? ` (${speaker.note})` : ''}</li>`
-    ).join('') : '';
-
-    let highlightsList = event.highlights.map(highlight => `<li>${highlight}</li>`).join('');
-
-    document.getElementById('eventDetailsContent').innerHTML = `
-        <p><strong>Date:</strong> ${event.startDate} - ${event.endDate}</p>
-        <p><strong>Location:</strong> ${event.location}</p>
-        <p>${event.description}</p>
-        ${event.speakers ? `<h4>Speakers:</h4><ul>${speakersList}</ul>` : ''}
-        <h4>Highlights:</h4>
-        <ul>${highlightsList}</ul>
-    `;
-
-    modal.show();
-}
-
-// Function to filter events
-function filterEvents() {
-    const dateRange = document.getElementById('date-range').value;
-    const [startDate, endDate] = dateRange.split(' - ');
-    const eventType = document.getElementById('event-type').value.toLowerCase();
-
-    const filteredEvents = events.filter(event => {
-        const eventStartDate = new Date(event.startDate);
-        const eventEndDate = new Date(event.endDate);
-        const filterStartDate = startDate ? new Date(startDate) : null;
-        const filterEndDate = endDate ? new Date(endDate) : null;
-
-        const dateMatch = !dateRange || (
-            (!filterStartDate || eventStartDate >= filterStartDate) &&
-            (!filterEndDate || eventEndDate <= filterEndDate)
-        );
-        const typeMatch = eventType === 'all' || event.type.toLowerCase() === eventType;
-
-        return dateMatch && typeMatch;
-    });
-
-    displayFilteredEvents(filteredEvents);
-}
-
-// Function to display filtered events
-function displayFilteredEvents(filteredEvents) {
-    const upcomingEvents = document.getElementById('upcoming-events');
-    const pastEvents = document.getElementById('past-events');
-    const currentDate = new Date();
-
-    upcomingEvents.innerHTML = '';
-    pastEvents.innerHTML = '';
-
-    filteredEvents.forEach(event => {
-        const eventDate = new Date(event.startDate);
-        const eventElement = createEventElement(event);
-
-        if (eventDate >= currentDate) {
-            upcomingEvents.appendChild(eventElement);
-        } else {
-            pastEvents.appendChild(eventElement);
-        }
-    });
-}
-
-// Initialize date range picker
-$(function() {
-    $('#date-range').daterangepicker({
-        autoUpdateInput: false,
-        opens: 'left',
-        locale: {
-            cancelLabel: 'Clear'
-        }
-    });
-
-    $('#date-range').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-        filterEvents();
-    });
-
-    $('#date-range').on('cancel.daterangepicker', function(ev, picker) {
-        $(this).val('');
-        filterEvents();
-    });
-});
-
-// Event listener for event type dropdown
-document.getElementById('event-type').addEventListener('change', filterEvents);
-
-// Initial display of events
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM content loaded");
-    displayEvents();
-});
