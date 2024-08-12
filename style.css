@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mathematical background */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: 
+        linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+/* Light grey header */
+header {
+    background-color: #d3d3d3 !important;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.logo {
+    max-width: 400px;
+}
+
+main {
+    flex: 1;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Black footer with white text */
+footer {
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.event-card {
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+}
+
+.event-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-details {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#eventDetailsModal .modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.past-event {
+    opacity: 0.7;
+}
+
+.past-event:hover {
+    opacity: 1;
+}
+
+/* Styles for dropdown menu and date range field */
+.dropdown-menu {
+    background-color: #f0f0f0;
+}
+
+.dropdown-item:hover {
+    background-color: #e0e0e0;
+}
+
+.date-range-field {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        max-width: 200px;
+    }
+}
+
+/* New style for footer links */
+footer a {
+    color: #000 !important;
+}
