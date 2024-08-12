@@ -43,7 +43,7 @@ const events = [
     "phone": "+91-9136857558",
     "website": "https://cdlds.ashoka.edu.in/"
   }
-},
+};
     {
         id: 2,
         title: "Is Physical Climate Risk Priced?",
