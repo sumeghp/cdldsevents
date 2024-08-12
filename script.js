@@ -23,7 +23,20 @@ let events = [
             "Research talks by eminent speakers on September 7, 2024"
         ]
     },
-    // Add other events here...
+    {
+        title: "Ashoka Astronomy Club",
+        type: "club",
+        startDate: "August 15, 2024",
+        endDate: "December 15, 2024",
+        location: "Ashoka University Campus",
+        description: "Join us for an exciting semester of astronomical exploration and discovery!",
+        highlights: [
+            "Weekly stargazing sessions",
+            "Guest lectures by renowned astronomers",
+            "Hands-on workshops on telescope use and astrophotography",
+            "Field trips to observatories"
+        ]
+    }
 ];
 
 // Function to display events
@@ -72,9 +85,9 @@ function showEventDetails(eventTitle) {
     
     document.getElementById('eventDetailsModalLabel').textContent = event.title;
     
-    let speakersList = event.speakers.map(speaker => 
+    let speakersList = event.speakers ? event.speakers.map(speaker => 
         `<li>${speaker.name} - ${speaker.affiliation}${speaker.note ? ` (${speaker.note})` : ''}</li>`
-    ).join('');
+    ).join('') : '';
 
     let highlightsList = event.highlights.map(highlight => `<li>${highlight}</li>`).join('');
 
@@ -82,8 +95,7 @@ function showEventDetails(eventTitle) {
         <p><strong>Date:</strong> ${event.startDate} - ${event.endDate}</p>
         <p><strong>Location:</strong> ${event.location}</p>
         <p>${event.description}</p>
-        <h4>Speakers:</h4>
-        <ul>${speakersList}</ul>
+        ${event.speakers ? `<h4>Speakers:</h4><ul>${speakersList}</ul>` : ''}
         <h4>Highlights:</h4>
         <ul>${highlightsList}</ul>
     `;
@@ -94,16 +106,44 @@ function showEventDetails(eventTitle) {
 // Function to filter events
 function filterEvents() {
     const dateRange = document.getElementById('date-range').value;
-    const eventType = document.getElementById('eventTypeDropdown').textContent.trim().toLowerCase();
+    const [startDate, endDate] = dateRange.split(' - ');
+    const eventType = document.getElementById('event-type').value.toLowerCase();
 
-    events.forEach(event => {
-        const eventElement = document.querySelector(`[data-event-title="${event.title}"]`);
-        if (eventElement) {
-            const isDateMatch = dateRange === '' || (new Date(event.startDate) >= new Date(dateRange.split(' - ')[0]) && 
-                                                     new Date(event.endDate) <= new Date(dateRange.split(' - ')[1]));
-            const isTypeMatch = eventType === 'all events' || event.type.toLowerCase() === eventType;
+    const filteredEvents = events.filter(event => {
+        const eventStartDate = new Date(event.startDate);
+        const eventEndDate = new Date(event.endDate);
+        const filterStartDate = startDate ? new Date(startDate) : null;
+        const filterEndDate = endDate ? new Date(endDate) : null;
 
-            eventElement.style.display = isDateMatch && isTypeMatch ? 'block' : 'none';
+        const dateMatch = !dateRange || (
+            (!filterStartDate || eventStartDate >= filterStartDate) &&
+            (!filterEndDate || eventEndDate <= filterEndDate)
+        );
+        const typeMatch = eventType === 'all' || event.type.toLowerCase() === eventType;
+
+        return dateMatch && typeMatch;
+    });
+
+    displayFilteredEvents(filteredEvents);
+}
+
+// Function to display filtered events
+function displayFilteredEvents(filteredEvents) {
+    const upcomingEvents = document.getElementById('upcoming-events');
+    const pastEvents = document.getElementById('past-events');
+    const currentDate = new Date();
+
+    upcomingEvents.innerHTML = '';
+    pastEvents.innerHTML = '';
+
+    filteredEvents.forEach(event => {
+        const eventDate = new Date(event.startDate);
+        const eventElement = createEventElement(event);
+
+        if (eventDate >= currentDate) {
+            upcomingEvents.appendChild(eventElement);
+        } else {
+            pastEvents.appendChild(eventElement);
         }
     });
 }
@@ -130,13 +170,10 @@ $(function() {
 });
 
 // Event listener for event type dropdown
-document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('eventTypeDropdown').textContent = this.textContent;
-        filterEvents();
-    });
-});
+document.getElementById('event-type').addEventListener('change', filterEvents);
 
 // Initial display of events
-document.addEventListener('DOMContentLoaded', displayEvents);
+document.addEventListener('DOMContentLoaded', () => {
+    displayEvents();
+    // Set up any other necessary initializations
+});
