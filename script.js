@@ -169,17 +169,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Date range picker
+$(function() {
     $('#date-range').daterangepicker({
-        opens: 'left'
-    }, function(start, end, label) {
-        const filteredEvents = events.filter(e => {
-            const eventDate = moment(e.date);
-            return eventDate.isSameOrAfter(start) && eventDate.isSameOrBefore(end);
-        });
-        renderEvents(filteredEvents);
+        autoUpdateInput: false,
+        opens: 'left',
+        locale: {
+            cancelLabel: 'Clear'
+        }
     });
 
+    $('#date-range').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        // Your existing filtering logic should go here
+        filterEvents();
+    });
+
+    $('#date-range').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+        // Your existing filtering logic for clearing should go here
+        filterEvents();
+    });
+});
+
+// Assuming you have a function called filterEvents() that handles the actual filtering
+function filterEvents() {
+    // Your event filtering logic goes here
+    // This function should use the selected date range to filter the events
+}
     // Event type filter
     const dropdownItems = document.querySelectorAll('.dropdown-item');
     dropdownItems.forEach(item => {
